@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -13,6 +13,7 @@ namespace WindowsCursorPosition
     public class Program {
 
         private static int c;
+
         static void Main(string[] args) {
             Console.WriteLine("WindowsCursorPosition started at {0:HH:mm:ss.fff}\n", DateTime.Now);
             Console.WriteLine("Press Enter key to exit the application...\n");
@@ -24,14 +25,20 @@ namespace WindowsCursorPosition
             timer.AutoReset = true;
             timer.Enabled = true;
 
+            Win32.ForceSystemAwake();
+
             Console.ReadLine();
+
             timer.Stop();
             timer.Dispose();
+
+            Win32.ResetThreadExecutionState();
+
             Console.WriteLine("Terminating application...");
             //Thread.Sleep(2000);
         }
 
-        private static async void OnTimedEvent(Object source, ElapsedEventArgs e) {
+        private static void OnTimedEvent(Object source, ElapsedEventArgs e) {
             Console.WriteLine(e.SignalTime);
             
             if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) return;
