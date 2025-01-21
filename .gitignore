@@ -15,6 +15,7 @@ obj/
 *.tar
 *.tar.gz
 *.tar.bz2
+*.sln
 
 # Windows
 Thumbs.db

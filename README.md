@@ -13,4 +13,4 @@
 3. `code .`
 
 ## Run
-1. `dotnet run`
+1. `dotnet run [-c Debug|Release]`
